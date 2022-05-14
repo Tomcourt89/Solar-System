@@ -45,12 +45,12 @@ const uraMaterial = new THREE.MeshPhongMaterial()
 const satRingMat = new THREE.MeshPhongMaterial( { side: DoubleSide })
 
 // Specific geometry for UV mapped saturn rings
-const satRingGeometry = new THREE.RingBufferGeometry(7, 9, 64);
+const satRingGeometry = new THREE.RingBufferGeometry(8, 11, 64);
 var pos = satRingGeometry.attributes.position;
 var satVector = new THREE.Vector3();
 for (let i = 0; i < pos.count; i++){
     satVector.fromBufferAttribute(pos, i);
-    satRingGeometry.attributes.uv.setXY(i, satVector.length() < 8 ? 0 : 1, 1);
+    satRingGeometry.attributes.uv.setXY(i, satVector.length() < 9 ? 0 : 1, 1);
 }
 
 // Image maps for each of the planets
@@ -72,7 +72,7 @@ scene.background = envTexture
 // The sun is a child element of the scene.
 // Each planets movement does not affect another planets movement with the exception of saturns rings which are a child element of saturn.
 const sun = new THREE.Mesh(
-    new THREE.IcosahedronBufferGeometry(10,10),
+    new THREE.IcosahedronBufferGeometry(15,15),
     basicMaterial
 )
 basicMaterial.map = sunMap
@@ -88,29 +88,27 @@ const mercury = new THREE.Mesh(
 // This allows for variable rotation speeds of each planet.
 const mercAxis = new THREE.Object3D()
 const mercOrbit = new THREE.Mesh(
-    new THREE.RingGeometry(19.8,20.2,100),
+    new THREE.RingGeometry(29.8,30.2,100),
     new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
 )
-
 mercMaterial.map = mercMap
-mercury.position.set(20, 0, 0)
+mercury.position.set(30, 0, 0)
 scene.add(mercAxis)
 mercAxis.add(mercury)
 mercOrbit.rotation.x = Math.PI / 2
 // mercury.add(new THREE.AxesHelper(5))
 
 const venus = new THREE.Mesh(
-    new THREE.IcosahedronBufferGeometry(2,2),
+    new THREE.IcosahedronBufferGeometry(3,3),
     venMaterial
 )
 const venAxis = new THREE.Object3D()
 const venOrbit = new THREE.Mesh(
-    new THREE.RingGeometry(29.8,30.2,100),
+    new THREE.RingGeometry(39.8,40.2,100),
     new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
 )
-
 venMaterial.map = venMap
-venus.position.set(0, 0, 30)
+venus.position.set(0, 0, 40)
 scene.add(venAxis)
 venAxis.add(venus)
 venOrbit.rotation.x = Math.PI / 2
@@ -122,42 +120,56 @@ const earth = new THREE.Mesh(
 )
 const earthAxis = new THREE.Object3D()
 const earthOrbit = new THREE.Mesh(
-    new THREE.RingGeometry(39.8,40.2,100),
+    new THREE.RingGeometry(49.8,50.2,100),
     new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
 )
-
 earthMaterial.map = earthMap
-earth.position.set(-40, 0, 0)
+earth.position.set(-50, 0, 0)
 scene.add(earthAxis)
 earthAxis.add(earth)
 earthOrbit.rotation.x = Math.PI / 2
 // earth.add(new THREE.AxesHelper(5))
 
 const mars = new THREE.Mesh(
-    new THREE.IcosahedronBufferGeometry(4,4),
+    new THREE.IcosahedronBufferGeometry(2,2),
     marsMaterial
 )
 const marsAxis = new THREE.Object3D()
 const marsOrbit = new THREE.Mesh(
-    new THREE.RingGeometry(49.8,50.2,100),
+    new THREE.RingGeometry(59.8,60.2,100),
     new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
 )
 
 marsMaterial.map = marsMap
-mars.position.set(50, 0, 0)
+mars.position.set(60, 0, 0)
 scene.add(marsAxis)
 marsAxis.add(mars)
 marsOrbit.rotation.x = Math.PI / 2
 // mars.add(new THREE.AxesHelper(5))
 
+const jupiter = new THREE.Mesh(
+    new THREE.IcosahedronBufferGeometry(8,8),
+    jupMaterial
+)
+const jupAxis = new THREE.Object3D()
+const jupOrbit = new THREE.Mesh(
+    new THREE.RingGeometry(74.8,75.2,100),
+    new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
+)
+jupMaterial.map = jupMap
+jupiter.position.set(-75, 0, 0)
+scene.add(jupAxis)
+jupAxis.add(jupiter)
+jupOrbit.rotation.x = Math.PI / 2
+// jupiter.add(new THREE.AxesHelper(5))
+
 const saturn = new THREE.Mesh(
-    new THREE.IcosahedronBufferGeometry(5,5),
+    new THREE.IcosahedronBufferGeometry(6,6),
     satMaterial
 )
-
 const satAxis = new THREE.Object3D()
 const satOrbit = new THREE.Mesh(
-    new THREE.RingGeometry(64.8,65.2,100),
+    new THREE.RingGeometry(99.8,100.2,100),
     new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
 )
 const satRing = new THREE.Mesh(
@@ -166,7 +178,7 @@ const satRing = new THREE.Mesh(
 )
 satMaterial.map = satMap
 satRingMat.map = satRingMap
-saturn.position.set(0, 0, -65)
+saturn.position.set(0, 0, -100)
 scene.add(satAxis)
 saturn.add(satRing)
 satAxis.add(saturn)
@@ -175,42 +187,8 @@ satRing.rotation.x = Math.PI / 2
 satOrbit.rotation.x = Math.PI / 2
 // saturn.add(new THREE.AxesHelper(5))
 
-const jupiter = new THREE.Mesh(
-    new THREE.IcosahedronBufferGeometry(6,6),
-    jupMaterial
-)
-const jupAxis = new THREE.Object3D()
-const jupOrbit = new THREE.Mesh(
-    new THREE.RingGeometry(79.8,80.2,100),
-    new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
-)
-
-jupMaterial.map = jupMap
-jupiter.position.set(-80, 0, 0)
-scene.add(jupAxis)
-jupAxis.add(jupiter)
-jupOrbit.rotation.x = Math.PI / 2
-// jupiter.add(new THREE.AxesHelper(5))
-
-const neptune = new THREE.Mesh(
-    new THREE.IcosahedronBufferGeometry(5,5),
-    nepMaterial
-)
-const nepAxis = new THREE.Object3D()
-const nepOrbit = new THREE.Mesh(
-    new THREE.RingGeometry(99.8,100.2,100),
-    new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
-)
-
-nepMaterial.map = nepMap
-neptune.position.set(100, 0, 0)
-scene.add(nepAxis)
-nepAxis.add(neptune)
-nepOrbit.rotation.x = Math.PI / 2
-// neptune.add(new THREE.AxesHelper(5))
-
 const uranus = new THREE.Mesh(
-    new THREE.IcosahedronBufferGeometry(4,4),
+    new THREE.IcosahedronBufferGeometry(5,5),
     uraMaterial
 )
 const uraAxis = new THREE.Object3D()
@@ -218,13 +196,29 @@ const uraOrbit = new THREE.Mesh(
     new THREE.RingGeometry(119.8,120.2,100),
     new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
 )
-
 uraMaterial.map = uraMap
-uranus.position.set(0, 0, -120)
+uranus.position.set(0, 0, 120)
 scene.add(uraAxis)
 uraAxis.add(uranus)
 uraOrbit.rotation.x = Math.PI / 2
 // uranus.add(new THREE.AxesHelper(5))
+
+const neptune = new THREE.Mesh(
+    new THREE.IcosahedronBufferGeometry(5,5),
+    nepMaterial
+)
+const nepAxis = new THREE.Object3D()
+const nepOrbit = new THREE.Mesh(
+    new THREE.RingGeometry(139.8,140.2,100),
+    new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
+)
+nepMaterial.map = nepMap
+neptune.position.set(140, 0, 0)
+scene.add(nepAxis)
+nepAxis.add(neptune)
+nepOrbit.rotation.x = Math.PI / 2
+// neptune.add(new THREE.AxesHelper(5))
+
 
 window.addEventListener('resize', onWindowResize, false)
 function onWindowResize() {
@@ -250,29 +244,29 @@ sun.userData.rotate = 'does in fact spin on its axis as with the planets in our 
 // Mercury
 mercury.userData.clickable = true
 mercury.userData.name = 'Mercury'
-mercury.userData.description = 'is the only star in our solar system. It sits at the center, and its gravity holds the solar system together. Everything in our solar system revolves around it.'
-mercury.userData.size = 'has a diameter of around 1.39 million kilometers and is about 100 times wider than Earth and roughly 10 times wider than Jupiter (our largest planet)'
-mercury.userData.speed = 'does not orbit our solar system like our planets but instead orbits around the center of our galaxy "The Milky Way" at a velocity of 828,000 kilometers per hour.'
-mercury.userData.rotate = 'does in fact spin on its axis as with the planets in our solar system, however, because the sun is not a solid object, research suggests that the sun rotates once every 27 days along its equator and 31 days along its poles'
+mercury.userData.description = 'is the smallest planet in the Solar System and the closest to the Sun. Mercury has no atmosphere due to extreme temperatures as a result of its proximity to the Sun.'
+mercury.userData.size = 'has a diameter of just under 5,000 kilometers, making it roughly the same size as the United States.'
+mercury.userData.speed = 'orbits the Sun at a rate of 47.87 kilometers per second. Giving it a yearly cycle of just under 88 of our days.'
+mercury.userData.rotate = 'only completes a full rotation once every 1,408 hours. That means it takes 58.6 of our days for it to complete one of its own.'
 // Venus
 venus.userData.clickable = true
 venus.userData.name = 'Venus'
-venus.userData.description = 'is the only star in our solar system. It sits at the center, and its gravity holds the solar system together. Everything in our solar system revolves around it.'
-venus.userData.size = 'has a diameter of around 1.39 million kilometers and is about 100 times wider than Earth and roughly 10 times wider than Jupiter (our largest planet)'
-venus.userData.speed = 'does not orbit our solar system like our planets but instead orbits around the center of our galaxy "The Milky Way" at a velocity of 828,000 kilometers per hour.'
-venus.userData.rotate = 'does in fact spin on its axis as with the planets in our solar system, however, because the sun is not a solid object, research suggests that the sun rotates once every 27 days along its equator and 31 days along its poles'
+venus.userData.description = 'is the second planet from the Sun and yet has higher surface temperatures than that of mercury. Its atmosphere is the densest of the solar system and is completely shrouded by a thick layer of sulfuric acid clouds.'
+venus.userData.size = 'holds a diameter of around 12,000 kilometers, making it a close comparison to that of Earth.'
+venus.userData.speed = 'travels at 35 kilometers per second which gives it a yearly cycle of 224.7 days once it has orbited the Sun.'
+venus.userData.rotate = 'holds the record for longest day cycle in the solar system with a huge 243 days. Thats 5,832 hours for a single day.'
 // Earth
 earth.userData.clickable = true
 earth.userData.name = 'Earth'
-earth.userData.description = 'is the only star in our solar system. It sits at the center, and its gravity holds the solar system together. Everything in our solar system revolves around it.'
-earth.userData.size = 'has a diameter of around 1.39 million kilometers and is about 100 times wider than Earth and roughly 10 times wider than Jupiter (our largest planet)'
-earth.userData.speed = 'does not orbit our solar system like our planets but instead orbits around the center of our galaxy "The Milky Way" at a velocity of 828,000 kilometers per hour.'
-earth.userData.rotate = 'does in fact spin on its axis as with the planets in our solar system, however, because the sun is not a solid object, research suggests that the sun rotates once every 27 days along its equator and 31 days along its poles'
+earth.userData.description = "is the third planet from the Sun and the only astronomical object known to harbor life. While large volumes of water can be found throughout the Solar System, only Earth sustains liquid surface water. About 71% of Earth's surface is made up of the ocean, dwarfing Earth's polar ice, lakes, and rivers. The remaining 29% of Earth's surface is land, consisting of continents and islands."
+earth.userData.size = "has a diameter of 12,742 kilometers, making it the 4th smallest planet in the solar system, just barely larger than Venus."
+earth.userData.speed = "orbits the sun every 365.25 days. Due to this extra .25 days, every 4 years we cut our calendar short one day and celebrate New Year after the 364th day to bring everything back in line again."
+earth.userData.rotate = "actually completes is daily rotation in 23 hours and 56 minutes, despite our conceived day cycle of 24 hours."
 // Mars
 mars.userData.clickable = true
 mars.userData.name = 'Mars'
-mars.userData.description = 'is the only star in our solar system. It sits at the center, and its gravity holds the solar system together. Everything in our solar system revolves around it.'
-mars.userData.size = 'has a diameter of around 1.39 million kilometers and is about 100 times wider than Earth and roughly 10 times wider than Jupiter (our largest planet)'
+mars.userData.description = "resides as the fourth most planet from the Sun and has had unmanned exploration conducted upon it through the use of remote controlled vehicles, giving us a greater understanding of this planet than any other except our own."
+mars.userData.size = "is the second-smallest planet in the Solar System, being larger than only Mercury and has a diameter of around 6,600 kilometers"
 mars.userData.speed = 'does not orbit our solar system like our planets but instead orbits around the center of our galaxy "The Milky Way" at a velocity of 828,000 kilometers per hour.'
 mars.userData.rotate = 'does in fact spin on its axis as with the planets in our solar system, however, because the sun is not a solid object, research suggests that the sun rotates once every 27 days along its equator and 31 days along its poles'
 // Saturn
@@ -480,52 +474,55 @@ function animate() {
     // Animation controllers to adjust all the spins, or individual spins
     if(data.PauseSpin) {
         if(data.Sun) {
-            sun.rotation.y += 0.0005
+            sun.rotation.y += 0.00037
+        }
+        if(data.MercurySpin) {
+            mercury.rotation.y += 0.0017
         }
         if(data.VenusSpin) {
-            venus.rotation.y += 0.005
+            venus.rotation.y += 0.00021
         }
         if(data.EarthSpin) {
             earth.rotation.y += 0.005
         }
         if(data.MarsSpin) {
-            mars.rotation.y += 0.005
-        }
-        if(data.SaturnSpin) {
-            saturn.rotation.y += 0.005
+            mars.rotation.y += 0.006
         }
         if(data.JupiterSpin) {
-            jupiter.rotation.y += 0.005
+            jupiter.rotation.y += 0.008
+        }
+        if(data.SaturnSpin) {
+            saturn.rotation.y += 0.008
         }
         if(data.NeptuneSpin) {
-            neptune.rotation.y += 0.005
+            neptune.rotation.y += 0.004
         }
         if(data.UranusSpin) {
-            uranus.rotation.y += 0.005
+            uranus.rotation.y += 0.004
         }
     }
     // Animation controllers to adjust all the orbits or individual orbits
     if(data.PauseOrbit) {
         if(data.Mercury) {
-        mercAxis.rotation.y += 0.005
+            mercAxis.rotation.y += 0.006
         }
         if(data.Venus) {
-            venAxis.rotation.y += 0.002
+            venAxis.rotation.y += 0.004
         }
         if(data.Earth) {
-            earthAxis.rotation.y += 0.0025
+            earthAxis.rotation.y += 0.001
         }
         if(data.Mars) {
-            marsAxis.rotation.y += 0.0015
-        }
-        if(data.Saturn) {
-            satAxis.rotation.y += 0.002
+            marsAxis.rotation.y += 0.0008
         }
         if(data.Jupiter) {
             jupAxis.rotation.y += 0.0005
         }
+        if(data.Saturn) {
+            satAxis.rotation.y += 0.0002
+        }
         if(data.Neptune) {
-            nepAxis.rotation.y += 0.0009
+            nepAxis.rotation.y += 0.000011
         }
         if(data.Uranus) {
             uraAxis.rotation.y += 0.00019
