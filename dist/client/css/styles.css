@@ -1,0 +1,16 @@
+body {
+    overflow: hidden;
+    margin: 0px;
+}
+#info {
+    font-family: monospace;
+    font-size: larger;
+    position: absolute;
+    bottom: 50px;
+    margin: 0px 10px;
+    /* border: 1px solid red; */
+    width: 99vw;
+    height: 25vh;
+    color: white;
+    pointer-events: none;
+}
