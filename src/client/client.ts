@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { GUI } from 'dat.gui'
-import { DoubleSide } from 'three'
+import { DoubleSide, NoToneMapping } from 'three'
 
 const scene = new THREE.Scene()
 // scene.add(new THREE.AxesHelper(5))
@@ -266,43 +266,49 @@ earth.userData.rotate = "actually completes is daily rotation in 23 hours and 56
 mars.userData.clickable = true
 mars.userData.name = 'Mars'
 mars.userData.description = "resides as the fourth most planet from the Sun and has had unmanned exploration conducted upon it through the use of remote controlled vehicles, giving us a greater understanding of this planet than any other except our own."
-mars.userData.size = "is the second-smallest planet in the Solar System, being larger than only Mercury and has a diameter of around 6,600 kilometers"
-mars.userData.speed = 'does not orbit our solar system like our planets but instead orbits around the center of our galaxy "The Milky Way" at a velocity of 828,000 kilometers per hour.'
-mars.userData.rotate = 'does in fact spin on its axis as with the planets in our solar system, however, because the sun is not a solid object, research suggests that the sun rotates once every 27 days along its equator and 31 days along its poles'
+mars.userData.size = "is the second-smallest planet in the Solar System, being larger than only Mercury and has a diameter of around 6,600 kilometers."
+mars.userData.speed = "will take 1.8 years to complete a full rotation of the Sun, travelling at 24 kilometers per second."
+mars.userData.rotate = "has a similar daily rotation to that of earth, completeting its day cycle in 25 hours."
 // Saturn
 saturn.userData.clickable = true
 saturn.userData.name = 'Saturn'
-saturn.userData.description = 'is the only star in our solar system. It sits at the center, and its gravity holds the solar system together. Everything in our solar system revolves around it.'
-saturn.userData.size = 'has a diameter of around 1.39 million kilometers and is about 100 times wider than Earth and roughly 10 times wider than Jupiter (our largest planet)'
-saturn.userData.speed = 'does not orbit our solar system like our planets but instead orbits around the center of our galaxy "The Milky Way" at a velocity of 828,000 kilometers per hour.'
-saturn.userData.rotate = 'does in fact spin on its axis as with the planets in our solar system, however, because the sun is not a solid object, research suggests that the sun rotates once every 27 days along its equator and 31 days along its poles'
+saturn.userData.description = "is the sixth planet from the Sun, its most notable feature is its prominent ring system, which is composed mainly of ice particles, with a smaller amount of rocky debris and dust. At least 83 moons are known to orbit Saturn, of which 53 are officially named; this does not include the hundreds of moonlets in its rings."
+saturn.userData.size = "is the second largest planet in the solar system with a diameter of 116,000 kilometers. While being over 95 times larger than Earth, it is only one eigth as dense due to it being a 'Gas Giant'"
+saturn.userData.speed = "travels the solar system at 9.6 kilometers per second, giving it a yearly orbit of the Sun every 29 and a half years."
+saturn.userData.rotate = "spins quickly for its size, completing a daily rotation in just 11 hours."
 // Jupiter
 jupiter.userData.clickable = true
 jupiter.userData.name = 'Jupiter'
-jupiter.userData.description = 'is the only star in our solar system. It sits at the center, and its gravity holds the solar system together. Everything in our solar system revolves around it.'
-jupiter.userData.size = 'has a diameter of around 1.39 million kilometers and is about 100 times wider than Earth and roughly 10 times wider than Jupiter (our largest planet)'
-jupiter.userData.speed = 'does not orbit our solar system like our planets but instead orbits around the center of our galaxy "The Milky Way" at a velocity of 828,000 kilometers per hour.'
-jupiter.userData.rotate = 'does in fact spin on its axis as with the planets in our solar system, however, because the sun is not a solid object, research suggests that the sun rotates once every 27 days along its equator and 31 days along its poles'
+jupiter.userData.description = "is the fifth planet from the Sun and is known as a 'Gas Giant'. Comprised primarily of hydrogen, the surface of the planet is divided into latitudinal bands with turbulence and storms along their boundaries. A prominent result of this is the 'Giant Red Spot', a storm of around 40,000 kilometers long."
+jupiter.userData.size = "is the largest planet in the solar system, measuring in at 139,000 kilometers in diameter. Almost 11 times larger than Earth"
+jupiter.userData.speed = "has an orbital speed of 13 kilometers per second, which makes it take 11.8 years to fully orbit the Sun."
+jupiter.userData.rotate = "is the largest planet in the solar system but it also spins the fastest, fully rotating in just 10 hours."
 // Neptune
 neptune.userData.clickable = true
 neptune.userData.name = 'Neptune'
-neptune.userData.description = 'is the only star in our solar system. It sits at the center, and its gravity holds the solar system together. Everything in our solar system revolves around it.'
-neptune.userData.size = 'has a diameter of around 1.39 million kilometers and is about 100 times wider than Earth and roughly 10 times wider than Jupiter (our largest planet)'
-neptune.userData.speed = 'does not orbit our solar system like our planets but instead orbits around the center of our galaxy "The Milky Way" at a velocity of 828,000 kilometers per hour.'
-neptune.userData.rotate = 'does in fact spin on its axis as with the planets in our solar system, however, because the sun is not a solid object, research suggests that the sun rotates once every 27 days along its equator and 31 days along its poles'
+neptune.userData.description = "is the final planet in the solar system with a distance from the Sun of 4.5 billion kilometers at the furthest point of its orbit."
+neptune.userData.size = "has a diameter of 49,000 kilometers, making it slightly smaller than its 'twin' ice giant, Uranaus."
+neptune.userData.speed = "is by far the slowest orbiting planet of the solar system. Travelling at 5.4 kilometers per second, it only completes a single rotation of the Sun every 164 years."
+neptune.userData.rotate = "has a much lower daily spin cycle of 16 hours."
 // Uranus
 uranus.userData.clickable = true
 uranus.userData.name = 'Uranus'
-uranus.userData.description = 'is the only star in our solar system. It sits at the center, and its gravity holds the solar system together. Everything in our solar system revolves around it.'
-uranus.userData.size = 'has a diameter of around 1.39 million kilometers and is about 100 times wider than Earth and roughly 10 times wider than Jupiter (our largest planet)'
-uranus.userData.speed = 'does not orbit our solar system like our planets but instead orbits around the center of our galaxy "The Milky Way" at a velocity of 828,000 kilometers per hour.'
-uranus.userData.rotate = 'does in fact spin on its axis as with the planets in our solar system, however, because the sun is not a solid object, research suggests that the sun rotates once every 27 days along its equator and 31 days along its poles'
+uranus.userData.description = "is the seventh planet from the Sun and is one of two 'Ice Giants' along with Neptune. As with gas giants, ice giants also lack a well defined 'solid surface.' Uranus's atmosphere is similar to Jupiter's and Saturn's in its primary composition of hydrogen and helium, but it contains more 'ices' such as water, ammonia, and methane, along with traces of other hydrocarbons. It has the coldest planetary atmosphere in the Solar System, with a minimum temperature of 49 Kelvin"
+uranus.userData.size = "is roughly 4x the size of Earth with a diameter of 50,000 kilometers."
+uranus.userData.speed = "naturally has a longer orbital cycle due to it being so far away from the Sun. A full rotation of the solar system will take 84 of our years."
+uranus.userData.rotate = "has a similarly short solar day to the other gas giants in our solar system, completing a full spin of its axis in 17 hours."
 
-
+// Calling the info div by its Id so that the content can be updated as necessary
+const info = document.getElementById('info') as HTMLDivElement
 
 window.addEventListener('click', event => {
     if(clickable) {
-        info.innerHTML = 'test'
+        info.innerHTML = 
+        `<h2>Controls</h2>
+        <p>Hold left click and move the mouse to rotate the camera around the Solar System.</p>
+        <p>Hold right click and move the mouse to pan the camera.</p>
+        <p>Use the scroll wheel to zoom in and out.</p>
+        <p>You can click on any of the planets to reveal more information about them. Or use the controls in the top right of the screen to alter their movement and lighting.</p>`
         clickable = null as any
         return
     }
@@ -357,6 +363,8 @@ window.addEventListener('click', event => {
     JupiterLine: false,
     NeptuneLine: false,
     UranusLine: false,
+    // Text Box
+    TextBox: true
  }
 
 const gui = new GUI()
@@ -462,11 +470,20 @@ planetsSpin.add(data, 'JupiterSpin')
 planetsSpin.add(data, 'NeptuneSpin')
 planetsSpin.add(data, 'UranusSpin')
 
+// Gui Folder to toggle the text box
+const textFolder = gui.addFolder('Text')
+textFolder.add(data, 'TextBox').onChange(() => {
+    if(data.TextBox) {
+        info.style.display = "block"
+    } else {
+        info.style.display = "none"
+    }
+})
+textFolder.open()
 
-const stats = Stats()
-document.body.appendChild(stats.dom)
-
-const info = document.getElementById('info') as HTMLDivElement
+// Stats panel to be shown during development for monitoring cpu load.
+// const stats = Stats()
+// document.body.appendChild(stats.dom)
 
 function animate() {
     requestAnimationFrame(animate)
@@ -531,7 +548,7 @@ function animate() {
 
     controls.update()
     render()
-    stats.update()
+    // stats.update()
 }
 
 function render() {
