@@ -139,7 +139,6 @@ const marsOrbit = new THREE.Mesh(
     new THREE.RingGeometry(59.8,60.2,100),
     new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
 )
-
 marsMaterial.map = marsMap
 mars.position.set(60, 0, 0)
 scene.add(marsAxis)
